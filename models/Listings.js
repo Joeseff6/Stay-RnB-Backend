@@ -1,5 +1,5 @@
 const mongoose = require(`mongoose`);
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const ListingsSchema = new Schema({
   zip: {
@@ -11,62 +11,77 @@ const ListingsSchema = new Schema({
   },
   address: {
     type: String,
-    required: [true, `Please enter a valid street address.`],
+    // required: [true, `Please enter a valid street address.`],
   },
   city: {
     type: String,
-    required: [true, `Please enter a valid city.`],
+    // required: [true, `Please enter a valid city.`],
   },
   state: {
     type: String,
-    required: [true, `Please enter a valid state.`],
+    // required: [true, `Please enter a valid state.`],
   },
-  available: {
-    type: Boolean,
+  availability: {
+    type: String,
     default: true,
   },
   type: {
-    type: String
+    type: String,
   },
-  price: {
+  rent: {
     type: Number,
-    required: [true, `Please enter a price.`],
+    // required: [true, `Please enter a price.`],
   },
-  bedrooms: {
+  bedroom: {
     type: Number,
   },
-  bathrooms: {
-    type: Number
+  restroom: {
+    type: Number,
   },
   pets: {
-    type: String
+    type: String,
   },
   smoking: {
-    type: String
+    type: String,
   },
-  numberOfGuests: {
-    type: Number
+  stove: {
+    type: String,
   },
+  washer: {
+    type: String,
+  },
+  wifi: {
+    type: String,
+  },
+  contact: {
+    type: String,
+  },
+  shared: {
+    type: String,
+  },
+  // numberOfGuests: {
+  //   type: Number,
+  // },
   datePosted: {
     type: Date,
     default: Date.now(),
   },
-  thumbnail: {
-    type: String,
-  },
-  pictures: {
-    type: Array,
-  },
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Reviews",
-    },
-  ],
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  }
+  // thumbnail: {
+  //   type: String,
+  // },
+  // pictures: {
+  //   type: Array,
+  // },
+  // reviews: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Reviews',
+  //   },
+  // ],
+  // user: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User',
+  // },
 });
 
 const Listings = mongoose.model(`Listings`, ListingsSchema);
