@@ -2,13 +2,16 @@ const mongoose = require(`mongoose`);
 const { Schema } = mongoose;
 
 const ListingsSchema = new Schema({
-  zip: {
+  name: {
     type: String,
+    required: [true, `Please enter a name.`],
+    trim: true,
+  },
+  zip: {
+    type: Number,
     required: [true, `Please enter a valid zip code.`],
     trim: true,
-    minLength: 5,
-    maxLength: 5,
-  },
+    },
   address: {
     type: String,
     // required: [true, `Please enter a valid street address.`],
@@ -27,6 +30,7 @@ const ListingsSchema = new Schema({
   },
   type: {
     type: String,
+    required: [true, `Please enter a valid state.`],
   },
   rent: {
     type: Number,
@@ -34,30 +38,27 @@ const ListingsSchema = new Schema({
   },
   bedroom: {
     type: Number,
+    required: [true, `Please select a number of bedrooms.`],
   },
-  restroom: {
+  beds: {
     type: Number,
+    required: [true, `Please select a number of beds.`],
+  },
+  bathrooms: {
+    type: Number,
+    required: [true, `Please select a number of bathrooms.`],
   },
   pets: {
     type: String,
+    default: "No",
   },
   smoking: {
     type: String,
+    default: "No",
   },
-  stove: {
-    type: String,
-  },
-  washer: {
-    type: String,
-  },
-  wifi: {
-    type: String,
-  },
-  contact: {
-    type: String,
-  },
-  shared: {
-    type: String,
+  numberOfGuests: {
+    type: Number,
+    required: [true, `Please select a number of guests.`],
   },
   // numberOfGuests: {
   //   type: Number,

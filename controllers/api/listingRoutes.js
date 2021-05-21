@@ -2,7 +2,7 @@ const router = require(`express`).Router();
 const db = require(`../../models`);
 
 // Get all listings
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const getListing = await db.Listings.find({});
     res.status(200).json(getListing);
@@ -15,32 +15,13 @@ router.get('/', async (req, res) => {
 // Create new listing
 router.post(`/`, async (req, res) => {
   try {
-    req.body.user = req.session.userId;
-    console.log('WE HIT THE create listing route!!', req.body);
-    const newListing = await db.Listings.create({
-      zip: req.body.zipcode,
-      address: req.body.address,
-      city: req.body.city,
-      state: req.body.address,
-      availability: req.body.availability,
-      type: req.body.type,
-      rent: parseInt(req.body.rent),
-      bedroom: parseInt(req.body.bedroom),
-      restroom: parseInt(req.body.restroom),
-      pets: req.body.pets,
-      smoking: req.body.smoking,
-      stove: req.body.stove,
-      washer: req.body.washer,
-      wifi: req.body.wifi,
-      contact: req.body.contact,
-      shared: req.body.shared,
-    });
-    // await db.User.findOneAndUpdate(
-    //   { _id: req.session.userId },
-    //   { $push: { listings: newListing._id } },
-    //   { new: true }
-    // );
-    res.status(200).json(newListing);
+    // console.log("First step")
+    // req.body.user = req.session.userId;
+    // const newListing = await db.Listings.create(req.body);
+    // await db.User.findOneAndUpdate({_id: req.session.userId}, { $push: { listings: newListing._id } }, { new: true })
+    // console.log("Last step")
+    // res.status(200).json(newListing);
+    return res.status(200).send("Hello World");
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -48,7 +29,7 @@ router.post(`/`, async (req, res) => {
 });
 
 //Delete a listing
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const deletedListing = await db.Listings.deleteOne({ _id: id });

@@ -3,6 +3,7 @@ const logger = require(`morgan`);
 const mongoose = require(`mongoose`);
 const PORT = process.env.PORT || 4002;
 const routes = require(`./controllers`);
+const cors = require('cors');
 
 const app = express();
 
@@ -32,8 +33,9 @@ const sess = {
   resave: false,
   saveUninitialized: true,
 };
-app.use(session(sess));
 
+app.use(cors());
+app.use(session(sess));
 app.use(logger(`dev`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
