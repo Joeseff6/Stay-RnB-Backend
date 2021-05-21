@@ -15,13 +15,10 @@ router.get("/", async (req, res) => {
 // Create new listing
 router.post(`/`, async (req, res) => {
   try {
-    // console.log("First step")
-    // req.body.user = req.session.userId;
-    // const newListing = await db.Listings.create(req.body);
-    // await db.User.findOneAndUpdate({_id: req.session.userId}, { $push: { listings: newListing._id } }, { new: true })
-    // console.log("Last step")
-    // res.status(200).json(newListing);
-    return res.status(200).send("Hello World");
+    req.body.user = req.session.userId;
+    const newListing = await db.Listings.create(req.body);
+    await db.User.findOneAndUpdate({_id: req.session.userId}, { $push: { listings: newListing._id } }, { new: true })
+    res.status(200).json(newListing);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
