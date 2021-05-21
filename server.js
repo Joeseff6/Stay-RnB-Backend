@@ -1,22 +1,27 @@
 const express = require(`express`);
 const logger = require(`morgan`);
 const mongoose = require(`mongoose`);
-const PORT = process.env.PORT || 4002;
+const PORT = process.env.PORT || 3001;
 const routes = require(`./controllers`);
 const cors = require('cors');
 
 const app = express();
 
 app.use(function (req, res, next) {
-
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:19006');
 
   // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  );
 
   // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type'
+  );
 
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
@@ -33,7 +38,6 @@ const sess = {
   resave: false,
   saveUninitialized: true,
 };
-
 app.use(cors());
 app.use(session(sess));
 app.use(logger(`dev`));
