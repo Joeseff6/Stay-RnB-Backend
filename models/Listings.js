@@ -7,6 +7,9 @@ const ListingsSchema = new Schema({
     required: [true, `Please enter a name.`],
     trim: true,
   },
+  description: {
+    type: String,
+  },
   zip: {
     type: Number,
     required: [true, `Please enter a valid zip code.`],
@@ -70,15 +73,21 @@ const ListingsSchema = new Schema({
   pictures: {
     type: Array,
   },
+  wifi: {
+    type: String,
+  },
+  freeParking: {
+    type: String
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
       ref: "Reviews",
     },
   ],
-  user: {
+  host: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Host",
   }
 });
 
