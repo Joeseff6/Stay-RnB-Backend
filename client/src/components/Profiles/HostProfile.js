@@ -3,8 +3,7 @@ import Man from "../../assets/Man.jpg";
 import { HostListingCard } from "../../components/ListingCards/HostListingCard";
 import { Link } from "react-router-dom";
 
-export const HostProfile = ({userInfo}) => {
-  console.log(userInfo)
+export const HostProfile = ({ userInfo }) => {
   return (
     <>
       <div className="row profileContainer">
@@ -14,10 +13,14 @@ export const HostProfile = ({userInfo}) => {
         <div className="col">
           <div className="row">
             <h1>Host Profile</h1>
-            <p className="fs-5 text-capitalize">First Name: {userInfo.firstName}</p>
-            <p className="fs-5 text-capitalize">Last Name: {userInfo.lastName}</p>
+            <p className="fs-5 text-capitalize">
+              First Name: {userInfo.firstName}
+            </p>
+            <p className="fs-5 text-capitalize">
+              Last Name: {userInfo.lastName}
+            </p>
             <p className="fs-5">Email Address: {userInfo.email}</p>
-            <p className="fs-5">Number of Listings: 3</p>
+            <p className="fs-5">Number of Listings: {userInfo.listings.length}</p>
           </div>
           <div className="row">
             <div className="col">
@@ -30,12 +33,9 @@ export const HostProfile = ({userInfo}) => {
       </div>
 
       <h3 className="text-center mt-5 mb-3">My Listings</h3>
-
-      <div className="row d-flex justify-content-center">
-        <HostListingCard />
-        <HostListingCard />
-        <HostListingCard />
-      </div>
+      {userInfo?.listings.map((listing) => (
+        <HostListingCard key={listing._id} listingInfo={listing} />
+      ))}
     </>
   );
 };

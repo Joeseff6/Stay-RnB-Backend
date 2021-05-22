@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import API from "../../utils/API";
 
-export const HostListingCard = (props) => {
+export const HostListingCard = ({ listingInfo }) => {
   const [classes, setClasses] = useState(
     "row mb-3 d-flex justify-content-center d-none"
   );
@@ -13,12 +17,18 @@ export const HostListingCard = (props) => {
     }
   };
 
+  const handleDelete = async ({ target }) => {
+    const id = target.dataset.id;
+    await API.deleteListing(id);
+    window.location.pathname = "/profile";
+  };
+
   return (
     <div className="row">
       <div className="row">
         <div className="col d-flex justify-content-center mb-3 mt-3">
-          <button onClick={ToggleDisplay} className="btn-primary">
-            Listing
+          <button onClick={ToggleDisplay} className="btn btn-primary text-capitalize">
+            {listingInfo.name}
           </button>
         </div>
       </div>
@@ -34,19 +44,41 @@ export const HostListingCard = (props) => {
               />
             </div>
             <div className="col mt-3">
-              <p>Entire Home in Houston</p>
-              <p>Exotic Getaway in Houston</p>
-              <p>6 guests - 4 bedrooms - 3 beds - 1 bath</p>
-              <p>Wifi - Free parking - Pets - Smoking</p>
-              <div className="col d-flex justify-content-center mt-5">
-                <a className="btn-warning" href="#">
+              <p className="my-2">Type - {listingInfo.type}</p>
+              <p className="my-2 text-capitalize">{listingInfo.name}</p>
+              <p className="my-2">{listingInfo.description}</p>
+              <p className="my-2">
+                <FontAwesomeIcon icon={faMapMarkerAlt} /> {listingInfo.address},{" "}
+                {listingInfo.city}, {listingInfo.state} {listingInfo.zip}
+              </p>
+              <p className="my-2">
+                {listingInfo.numberOfGuests}{" "}
+                {listingInfo.numberOfGuests === 1 ? "Guest " : "Guests "}-{" "}
+                {listingInfo.bedrooms}{" "}
+                {listingInfo.bedrooms === 1 ? "Bedroom " : "Bedrooms "}-{" "}
+                {listingInfo.beds} {listingInfo.beds === 1 ? "Bed " : "Beds "}-{" "}
+                {listingInfo.bathrooms}{" "}
+                {listingInfo.bathrooms === 1 ? "Bath " : "Baths "}
+              </p>
+              <p className="my-2">
+                Wifi: {listingInfo.wifi} | Free parking:{" "}
+                {listingInfo.freeParking} | Pets: {listingInfo.pets} | Smoking:{" "}
+                {listingInfo.smoking}
+              </p>
+              <p className="my-2">${listingInfo.price}/month</p>
+              <div className="col d-flex justify-content-center mt-2">
+                <Link className="btn btn-warning" to={"/editlisting/" + listingInfo._id} >
                   Edit Listing
-                </a>
+                </Link>
               </div>
-              <div className="col d-flex justify-content-center mt-3">
-                <a className="btn-danger" href="#">
+              <div className="col d-flex justify-content-center my-3">
+                <span
+                  className="btn btn-danger"
+                  data-id={listingInfo._id}
+                  onClick={handleDelete}
+                >
                   Delete Listing
-                </a>
+                </span>
               </div>
             </div>
           </div>

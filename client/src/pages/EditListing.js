@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import API from "../utils/API";
+import { useParams } from 'react-router-dom';
 
-export const AddListing = () => {
+export const EditListing = () => {
   const [listingForm, setListingForm] = useState({
     name: "",
     description: "",
@@ -23,11 +24,12 @@ export const AddListing = () => {
     freeParking: "No",
   });
   const [characterCount, setCharacterCount] = useState(0);
+  const { id } = useParams();
 
-  const postListing = async (event) => {
+  const editListing = async (event) => {
     try {
       event.preventDefault();
-      await API.postListing(listingForm);
+      await API.editListing(id,listingForm);
       window.location.pathname = "/profile";
     } catch (err) {
       console.log(err);
@@ -36,7 +38,7 @@ export const AddListing = () => {
 
   return (
     <>
-      <h1 className="text-center mb-3">Add a listing!</h1>
+      <h1 className="text-center mb-3">Edit your listing!</h1>
 
       <div className="row d-flex justify-content-center">
         <div className="col-6">
@@ -320,7 +322,7 @@ export const AddListing = () => {
               <div className="col d-flex justify-content-center">
                 <button
                   className="btn btn-primary"
-                  onClick={postListing}
+                  onClick={editListing}
                   type="submit"
                 >
                   Submit

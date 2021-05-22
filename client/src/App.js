@@ -8,6 +8,7 @@ import {
   Signup,
   RecoverPassword,
   AddListing,
+  EditListing,
 } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Welcome, Main } from "./layout";
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/addlisting" element={<AddListing />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/recover" element={<RecoverPassword />} />
+            <Route path="/editlisting/:id" element={<EditListing />} />
           </Route>
         </Routes>
       </div>
