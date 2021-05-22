@@ -9,7 +9,6 @@ export const Profile = () => {
   useEffect(async () => {
     const { data } = await API.getUser();
     setUserInfo(data);
-    console.log(data);
   }, []);
 
 

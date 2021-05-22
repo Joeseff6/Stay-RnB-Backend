@@ -5,3 +5,6 @@ export { Profile } from './Profile';
 export { Signup } from './Signup';
 export { RecoverPassword } from './RecoverPassword';
 export { AddListing } from './AddListing';
+export { EditListing } from './EditListing';
+
+

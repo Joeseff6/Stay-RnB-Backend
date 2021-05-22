@@ -19,9 +19,6 @@ export const Listing = () => {
     }
   };
 
-  // useEffect(() => {
-  // },[zip])
-
   return (
     <>
       <div>
@@ -30,7 +27,7 @@ export const Listing = () => {
       <form className="mb-3">
         <div className="input-group d-flex justify-content-center">
           <input
-            className="col-6 search"
+            className="col-3 search"
             type="text"
             id="searchInput"
             placeholder="Enter your destination zip code"

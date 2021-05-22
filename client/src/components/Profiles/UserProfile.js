@@ -12,11 +12,6 @@ export const UserProfile = ({ userInfo }) => {
           <p className="fs-5 text-capitalize">First Name: {userInfo.firstName}</p>
           <p className="fs-5 text-capitalize">Last Name: {userInfo.lastName}</p>
           <p className="fs-5">Email Address: {userInfo.email}</p>
-          <p className="fs-5">Phone Number: 098-765-4321</p>
-          <p className="fs-5">
-            Address: 789 Random Woman Ln, Houston, Tx 77777
-          </p>
-          <p className="fs-5">Areas of Interest: 77777, 12345</p>
         </div>
       </div>
     </>

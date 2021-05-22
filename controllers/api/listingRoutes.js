@@ -12,6 +12,18 @@ router.get("/:zip", async (req, res) => {
   }
 });
 
+// Get listings by id
+router.get("/:id", async (req, res) => {
+  try {
+    console.log(req.params)
+    const getListing = await db.Listings.find({id: req.params.id});
+    res.status(200).json(getListing);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 // Create new listing
 router.post(`/`, async (req, res) => {
   try {
@@ -24,11 +36,21 @@ router.post(`/`, async (req, res) => {
   }
 });
 
+// Create new listing
+router.put(`/:id`, async (req, res) => {
+  try {
+    const updatedListing = await db.Listings.findOneAndUpdate({_id: req.params.id}, req.body.data, { new: true })
+    res.status(200).json(updatedListing);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 //Delete a listing
 router.delete("/:id", async (req, res) => {
   try {
-    const id = req.params.id;
-    const deletedListing = await db.Listings.deleteOne({ _id: id });
+    const deletedListing = await db.Listings.deleteOne({ _id: req.params.id });
     res.status(200).json(deletedListing);
   } catch (err) {
     console.log(err);

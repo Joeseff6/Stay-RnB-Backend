@@ -11,9 +11,19 @@ const API = {
     return axios.post(`/api/listings`, { data: listingData });
   },
 
+  // edit listing
+  editListing: (id, listingData) => {
+    return axios.put(`/api/listings/` + id, { data: listingData });
+  },
+
+  // edit listing
+  getListing: (id) => {
+    return axios.get(`/api/listings/` + id);
+  },
+
   // delete a listing by ID
   deleteListing: (id) => {
-    return axios.delete("/:id" + id);
+    return axios.delete("/api/listings/" + id);
   },
 
   // gets user by id
