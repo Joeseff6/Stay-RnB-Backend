@@ -1,10 +1,10 @@
 const router = require(`express`).Router();
 const db = require(`../../models`);
 
-// Get all listings
-router.get("/", async (req, res) => {
+// Get listings by zip
+router.get("/:zip", async (req, res) => {
   try {
-    const getListing = await db.Listings.find({});
+    const getListing = await db.Listings.find({zip: req.query.zip});
     res.status(200).json(getListing);
   } catch (err) {
     console.log(err);
@@ -15,9 +15,8 @@ router.get("/", async (req, res) => {
 // Create new listing
 router.post(`/`, async (req, res) => {
   try {
-    req.body.user = req.session.userId;
-    const newListing = await db.Listings.create(req.body);
-    await db.User.findOneAndUpdate({_id: req.session.userId}, { $push: { listings: newListing._id } }, { new: true })
+    const newListing = await db.Listings.create(req.body.data);
+    const userData = await db.Host.findOneAndUpdate({_id: req.session.userId}, { $push: { listings: newListing._id } }, { new: true })
     res.status(200).json(newListing);
   } catch (err) {
     console.log(err);
