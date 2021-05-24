@@ -13,10 +13,9 @@ router.get("/:zip", async (req, res) => {
 });
 
 // Get listings by id
-router.get("/:id", async (req, res) => {
+router.get("/id/:id", async (req, res) => {
   try {
-    console.log(req.params)
-    const getListing = await db.Listings.find({id: req.params.id});
+    const getListing = await db.Listings.find({_id: req.params.id});
     res.status(200).json(getListing);
   } catch (err) {
     console.log(err);
@@ -36,7 +35,7 @@ router.post(`/`, async (req, res) => {
   }
 });
 
-// Create new listing
+// Edit a listing
 router.put(`/:id`, async (req, res) => {
   try {
     const updatedListing = await db.Listings.findOneAndUpdate({_id: req.params.id}, req.body.data, { new: true })

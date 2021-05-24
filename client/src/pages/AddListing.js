@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import API from "../utils/API";
 
 export const AddListing = () => {
@@ -245,7 +245,7 @@ export const AddListing = () => {
                 name="guests"
                 id="guests"
                 onChange={({ target }) =>
-                  setListingForm({ ...listingForm, guests: target.value })
+                  setListingForm({ ...listingForm, numberOfGuests: target.value })
                 }
               >
                 <option value="1">1</option>

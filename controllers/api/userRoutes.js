@@ -99,7 +99,6 @@ router.get("/", async (req, res) => {
       const getUser = await db.Host.findById(req.session.userId).populate(
         "listings"
       );
-      console.log(getUser);
       res.status(200).json(getUser);
     }
   } catch (err) {
