@@ -61,7 +61,11 @@ I WANT to book a room-and-board for an intermediate period of time
 - Add ability for the User/Host to edit information in their profile
 - Expand search ability to find listings in a radius of the desired zip code
 - Add "Forgot password" functionality for users to reset account password
+- Allow users to upload pictures of themselves and their listings (default is hardcoded)
 
 ## Screenshots
 
-
+![The homepage for Stay RnB](./client/src/assets/Capture1.JPG)
+![Page where Hosts can a listing](./client/src/assets/Capture2.JPG)
+![The Host profile with a listing shown](./client/src/assets/Capture3.JPG)
+![Page where the Host can edit their listing](./client/src/assets/Capture4.JPG)
